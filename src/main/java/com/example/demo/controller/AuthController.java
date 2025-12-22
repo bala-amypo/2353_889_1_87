@@ -28,7 +28,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<User>
+     register(@RequestBody RegisterRequest request) {
         User user = new User();
         user.setFullName(request.getName());
         user.setEmail(request.getEmail());
