@@ -11,8 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
-//@RestController
-//@RequestMapping("/auth")
+@RestController
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
