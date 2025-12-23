@@ -15,6 +15,49 @@ public class ActivityLog {
     @ManyToOne
     @JoinColumn(name = "activity_type_id", nullable = false)
     private ActivityType activityType;
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class ActivityLog {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private ActivityType activityType;
+
+    private Double value;
+    private String notes;
+    private LocalDateTime loggedAt;
+
+    // ✅ REQUIRED SETTERS
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
+    }
+
+    public void setLoggedAt(LocalDateTime loggedAt) {
+        this.loggedAt = loggedAt;
+    }
+}
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
