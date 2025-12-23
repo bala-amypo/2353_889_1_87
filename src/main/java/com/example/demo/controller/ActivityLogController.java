@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ActivityLogRequest;
 import com.example.demo.entity.ActivityLog;
 import com.example.demo.service.ActivityLogService;
 import org.springframework.format.annotation.DateTimeFormat;
