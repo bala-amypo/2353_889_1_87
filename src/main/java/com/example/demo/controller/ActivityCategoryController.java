@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class ActivityCategoryController {
-
     private final ActivityCategoryService categoryService;
 
     public ActivityCategoryController(ActivityCategoryService categoryService) {
@@ -23,5 +22,10 @@ public class ActivityCategoryController {
     @GetMapping
     public List<ActivityCategory> getAllCategories() {
         return categoryService.getAllCategories();
+    }
+
+    @GetMapping("/{id}")
+    public ActivityCategory getCategory(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 }
