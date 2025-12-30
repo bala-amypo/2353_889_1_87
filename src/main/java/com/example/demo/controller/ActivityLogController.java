@@ -1,36 +1,31 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ActivityLogRequest;
-import com.example.demo.entity.ActivityLog;
-import com.example.demo.service.ActivityLogService;
+import com.example.demo.entity.ActivityCategory;
+import com.example.demo.service.ActivityCategoryService;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/logs")
-public class ActivityLogController {
-    private final ActivityLogService logService;
+@RequestMapping("/api/categories")
+public class ActivityCategoryController {
+    private final ActivityCategoryService categoryService;
 
-    public ActivityLogController(ActivityLogService logService) {
-        this.logService = logService;
+    public ActivityCategoryController(ActivityCategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
-    @PostMapping("/user/{userId}/type/{typeId}")
-    public ActivityLog logActivity(@PathVariable Long userId, @PathVariable Long typeId, @RequestBody ActivityLogRequest request) {
-        ActivityLog log = new ActivityLog();
-        log.setQuantity(request.getQuantity());
-        log.setActivityDate(request.getActivityDate());
-        return logService.logActivity(userId, typeId, log);
+    @PostMapping
+    public ActivityCategory createCategory(@RequestBody ActivityCategory category) {
+        return categoryService.createCategory(category);
     }
 
-    @GetMapping("/user/{userId}")
-    public List<ActivityLog> getLogsByUser(@PathVariable Long userId) {
-        return logService.getLogsByUser(userId);
+    @GetMapping
+    public List<ActivityCategory> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
-    @GetMapping("/user/{userId}/range")
-    public List<ActivityLog> getLogsByUserAndDate(@PathVariable Long userId, @RequestParam LocalDate start, @RequestParam LocalDate end) {
-        return logService.getLogsByUserAndDate(userId, start, end);
+    @GetMapping("/{id}")
+    public ActivityCategory getCategory(@PathVariable Long id) {
+        return categoryService.getCategory(id);
     }
 }
